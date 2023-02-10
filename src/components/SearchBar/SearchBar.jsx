@@ -8,31 +8,23 @@ export default function SearchBar ({ onSubmit }) {
     const [query, setQuery] = useState('');
     
     const handleChange = event => {
-        // console.log(event);
-        // console.log(event.currentTarget);
-        // console.log(event.currentTarget.value);
         setQuery(event.currentTarget.value.toLowerCase());
     };
 
     const handleSubmit = event => {
         event.preventDefault();
-        // console.log(event);
-        // console.log(event.target);
-        // console.log(event.target.elements);
-        // console.log( event.target.elements.query);
-        // console.log(event.target.elements.query.value);
-        event.target.reset();
+        // event.target.reset();
 
         if (query.trim() === '') {
             return toast.info('Please, specify your search query.');
         }
         onSubmit(query);
-        reset();
+        // reset();
     };
 
-    const reset = () => {
-        setQuery('');
-    };
+    // const reset = () => {
+    //     setQuery('');
+    // };
 
     return (
             <header className={css.searchbar}>

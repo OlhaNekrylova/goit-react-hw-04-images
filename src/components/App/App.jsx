@@ -21,8 +21,11 @@ export default function App () {
   const [tags, setTags] = useState('');
 
 useEffect(() => {
-  if (!query) return; 
-    fetchImages(query, page);
+  if (!query) {
+    return;
+  } 
+
+  fetchImages(query, page);
   }, [query, page]);
 
   const fetchImages = (query, page) => {
@@ -57,8 +60,11 @@ useEffect(() => {
     .finally(() => setIsLoading(false));
 };
 
-  const handleSearch = query => {
-    setQery(query);
+  const handleSearch = newQuery => {
+    if (newQuery === query) {
+      return;
+  }
+    setQery(newQuery);
     setImages([]);
     setPage(1);
     setError(null);

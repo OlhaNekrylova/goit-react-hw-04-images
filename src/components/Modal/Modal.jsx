@@ -6,19 +6,20 @@ import css from './Modal.module.css';
 const modalRoot = document.querySelector('#modal-root');
 
 export default function Modal ({ children, onClose }) {
-    
     useEffect(() => {
+        const handleKeyDown = event => {
+            if (event.code === 'Escape') {
+                onClose();
+            }
+        };
+
         window.addEventListener('keydown', handleKeyDown);
         return () => {
             window.removeEventListener('keydown', handleKeyDown); 
         }
-    });
+    }, [onClose]);
     
-    const handleKeyDown = event => {
-        if (event.code === 'Escape') {
-            onClose();
-        }
-    };
+    
 
     const handleBackdropClick = event => {
         if (event.currentTarget === event.target) {
